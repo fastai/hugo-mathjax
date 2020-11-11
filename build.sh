@@ -1,3 +1,5 @@
+set -e
+
 case "$OSTYPE" in
   darwin*)
     brew install upx rsync
@@ -20,6 +22,7 @@ git checkout ${latesttag}
 patch -p1 < ../hugo.patch
 go build --tags extended
 upx hugo
+upx -t hugo
 
 mkdir -p ~/.ssh
 echo "$SSH_KEY" > ~/.ssh/id_rsa
