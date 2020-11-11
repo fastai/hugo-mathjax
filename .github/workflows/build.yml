@@ -11,10 +11,9 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v2
-    - run: bash clone.sh
     - name: Build Binary
       id: binary
-      run: bash ./_action_files/build1.sh
+      run: bash build.sh
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
