@@ -1,3 +1,5 @@
+set -e
+
 case "$OSTYPE" in
   darwin*)
     brew install upx rsync
@@ -20,7 +22,6 @@ git checkout ${latesttag}
 patch -p1 < ../hugo.patch
 go build --tags extended
 
-set -e
 upx hugo
 upx -t hugo
 
