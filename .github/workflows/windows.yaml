@@ -9,12 +9,13 @@ jobs:
     - uses: al-cheb/configure-pagefile-action@v1.2
       with:
         minimum-size: 6
+        maximum-size: 16
         disk-root: "D:"
     - run: (Get-CimInstance Win32_PageFileUsage).AllocatedBaseSize
-    - run: Get-PSDrive
-    - uses: actions/checkout@v2
-    - run: cinst --no-progress openssh rsync
-    - run: |
-        scp
-        pip install fastcore
-        python build.py
+#     - run: Get-PSDrive
+#     - uses: actions/checkout@v2
+#     - run: cinst --no-progress openssh rsync
+#     - run: |
+#         scp
+#         pip install fastcore
+#         python build.py
