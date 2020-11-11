@@ -7,4 +7,5 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - run: cinst openssh rsync
+    - run: cinst --no-progress openssh rsync
+    - run: rsync --version
