@@ -1,4 +1,4 @@
-name: Build Hugo
+name: Windows
 on:
   workflow_dispatch: 
 
