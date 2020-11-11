@@ -8,8 +8,8 @@ jobs:
     steps:
     - uses: al-cheb/configure-pagefile-action@v1.2
       with:
-        minimum-size: 6
-        maximum-size: 16
+        minimum-size: 6GB
+        maximum-size: 8GB
         disk-root: "D:"
     - run: (Get-CimInstance Win32_PageFileUsage).AllocatedBaseSize
 #     - run: Get-PSDrive
