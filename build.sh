@@ -19,11 +19,10 @@ git clone https://github.com/gohugoio/hugo.git
 cd hugo
 latesttag=$(git describe --tags)
 git checkout ${latesttag}
-patch -p1 < ../hugo.patch
+#patch -p1 < ../hugo.patch
 go build --tags extended
 
-upx hugo
-upx -t hugo
+#upx hugo
 
 mkdir -p ~/.ssh
 echo "$SSH_KEY" > ~/.ssh/id_rsa
