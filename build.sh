@@ -1,5 +1,3 @@
-set -e
-
 case "$OSTYPE" in
   darwin*)
     brew install upx rsync
@@ -15,6 +13,7 @@ case "$OSTYPE" in
     ;;
 esac
 
+set -e
 git clone https://github.com/gohugoio/hugo.git
 cd hugo
 latesttag=$(git describe --tags)
