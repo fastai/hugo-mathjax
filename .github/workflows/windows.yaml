@@ -8,4 +8,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: cinst --no-progress openssh rsync
-    - run: rsync --version
+    - run: |
+        rsync --version
+        pip install fastcore
