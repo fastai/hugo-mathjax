@@ -11,3 +11,4 @@ jobs:
     - run: |
         rsync --version
         pip install fastcore
+        python build.py
