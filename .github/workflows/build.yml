@@ -1,4 +1,4 @@
-name: Build Binaries
+name: Build Hugo
 on:
   workflow_dispatch: 
 
@@ -11,8 +11,20 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Binary
-      id: binary
-      run: bash build.sh
+    - run: bash build.sh
       env:
         SSH_KEY: ${{ secrets.DH_KEY }}
+        DEST_OS: ${{ matrix.os }}
+
+  upx:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos, ubuntu]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: bash upx.sh
+      env:
+        SSH_KEY: ${{ secrets.DH_KEY }}
+        DEST_OS: ${{ matrix.os }}
