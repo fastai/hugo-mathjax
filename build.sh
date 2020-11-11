@@ -2,12 +2,9 @@ set -e
 
 case "$OSTYPE" in
   darwin*)
-    brew install upx rsync
     DEST_OS=macos
     ;;
   linux*)
-    sudo apt-get update
-    sudo apt-get install -y rsync
     DEST_OS=linux
     ;;
   *)
@@ -19,7 +16,7 @@ git clone https://github.com/gohugoio/hugo.git
 cd hugo
 latesttag=$(git describe --tags)
 git checkout ${latesttag}
-#patch -p1 < ../hugo.patch
+patch -p1 < ../hugo.patch
 go build --tags extended
 
 #upx hugo
