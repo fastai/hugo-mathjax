@@ -7,7 +7,11 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: al-cheb/configure-pagefile-action@v1.2
+      with:
+        minimum-size: 32
+        disk-root: "C:"
     - run: (Get-CimInstance Win32_PageFileUsage).AllocatedBaseSize
+    - run: Get-PSDrive
     - uses: actions/checkout@v2
     - run: cinst --no-progress openssh rsync
     - run: |
