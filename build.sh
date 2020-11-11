@@ -13,13 +13,14 @@ case "$OSTYPE" in
     ;;
 esac
 
-set -e
 git clone https://github.com/gohugoio/hugo.git
 cd hugo
 latesttag=$(git describe --tags)
 git checkout ${latesttag}
 patch -p1 < ../hugo.patch
 go build --tags extended
+
+set -e
 upx hugo
 upx -t hugo
 
