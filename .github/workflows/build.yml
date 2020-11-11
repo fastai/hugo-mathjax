@@ -7,8 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-#         os: [macos, ubuntu]
-        os: [macos]
+        os: [macos, ubuntu]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v2
