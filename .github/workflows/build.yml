@@ -17,6 +17,7 @@ jobs:
         DEST_OS: ${{ matrix.os }}
 
   upx:
+    needs: [build]
     strategy:
       fail-fast: false
       matrix:
