@@ -6,8 +6,8 @@ case "$OSTYPE" in
     DEST_OS=macos
     ;;
   linux*)
-    apt-get update
-    apt-get install -y rsync
+    sudo apt-get update
+    sudo apt-get install -y rsync
     DEST_OS=linux
     ;;
   *)
