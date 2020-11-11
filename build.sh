@@ -1,15 +1,9 @@
 set -e
 
 case "$OSTYPE" in
-  darwin*)
-    DEST_OS=macos
-    ;;
-  linux*)
-    DEST_OS=linux
-    ;;
-  *)
-    echo "unknown: $OSTYPE"
-    ;;
+  darwin*) DEST_OS=macos; ;;
+  linux*)  DEST_OS=linux; ;;
+  *)       echo "unknown: $OSTYPE"; ;;
 esac
 
 git clone https://github.com/gohugoio/hugo.git
