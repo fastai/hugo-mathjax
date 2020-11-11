@@ -14,9 +14,5 @@ jobs:
     - name: Build Binary
       id: binary
       run: bash build.sh
-    - uses: fastai/workflows/rsync@master
-      with:
-        username: jeremyphoward
-        hostname: ps625762.dreamhostps.com
-        dest_path: files.fast.ai/hugo/${{ matrix.os }}
-        ssh_key: ${{ secrets.DH_KEY }}
+      env:
+        SSH_KEY: ${{ secrets.DH_KEY }}
