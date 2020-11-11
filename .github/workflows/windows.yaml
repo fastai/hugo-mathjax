@@ -6,6 +6,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - uses: al-cheb/configure-pagefile-action@v1.2
+    - run: (Get-CimInstance Win32_PageFileUsage).AllocatedBaseSize
     - uses: actions/checkout@v2
     - run: cinst --no-progress openssh rsync
     - run: |
