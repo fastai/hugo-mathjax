@@ -1,0 +1,21 @@
+name: Build Binaries 1
+on:
+  workflow_dispatch: 
+
+jobs: 
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos, ubuntu]
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+    - run: bash clone.sh
+    - name: Build Binary
+      id: binary
+      run: bash ./_action_files/build1.sh
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: hugo-${{ matrix.os }}
+        path: hugo
