@@ -10,6 +10,7 @@ jobs:
         os: [macos, ubuntu]
     runs-on: ${{ matrix.os }}-latest
     steps:
+    - uses: actions/checkout@v2
     - run: bash clone.sh
     - name: Build Binary
       id: binary
