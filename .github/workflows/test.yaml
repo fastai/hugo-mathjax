@@ -9,11 +9,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build hugo
       run: |
-        git clone https://github.com/gohugoio/hugo.git
+        python build.py
         cd hugo
         patch -l -p1 -i ../hugo.patch
         go build --tags extended
     - uses: actions/upload-artifact@v2
       with:
-        name: hugo-windows.exe
+        name: hugo-windows
         path: hugo/hugo.exe
