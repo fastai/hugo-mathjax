@@ -7,8 +7,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - run: |
+    - name: Build hugo
+      run: |
         git clone https://github.com/gohugoio/hugo.git
         cd hugo
         patch -l -p1 -i ../hugo.patch
         go build --tags extended
+    - uses: actions/upload-artifact@v2
+      with:
+        name: hugo-windows.exe
+        path: hugo/hugo.exe
