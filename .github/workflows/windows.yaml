@@ -1,4 +1,7 @@
 name: Windows
+defaults:
+  run:
+    shell: powershell
 on:
   workflow_dispatch: 
 
