@@ -9,13 +9,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - run: (Get-CimInstance Win32_PageFileUsage).AllocatedBaseSize
+#     - run: (Get-CimInstance Win32_PageFileUsage).AllocatedBaseSize
     - uses: al-cheb/configure-pagefile-action@v1.2
       with:
         minimum-size: 16GB
         disk-root: "C:"
-    - run: Get-PSDrive
     - uses: actions/checkout@v2
+#     - run: Get-PSDrive
     - run: cinst --no-progress openssh
     - run: |
         scp
