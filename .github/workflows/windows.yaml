@@ -16,8 +16,8 @@ jobs:
         disk-root: "C:"
     - run: Get-PSDrive
     - uses: actions/checkout@v2
-    - run: cinst --no-progress openssh rsync
-    - run: rsync.exe
-#         scp
-#         pip install fastcore
-#         python build.py
+    - run: cinst --no-progress openssh
+    - run: |
+        scp
+        pip install fastcore
+        python build.py
