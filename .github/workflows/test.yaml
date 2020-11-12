@@ -8,9 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build hugo
-      run: |
-        pip install fastcore
-        python build.py
+      run: pip install fastcore && python build.py
     - uses: actions/upload-artifact@v2
       with:
         name: hugo-windows
