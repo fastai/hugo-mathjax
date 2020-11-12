@@ -17,7 +17,7 @@ jobs:
     - run: Get-PSDrive
     - uses: actions/checkout@v2
     - run: cinst --no-progress openssh rsync
-    - run: rsync
+    - run: rsync.exe
 #         scp
 #         pip install fastcore
 #         python build.py
