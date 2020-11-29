@@ -16,8 +16,4 @@ jobs:
     - uses: actions/setup-python@v2
       with: {python-version: '3.8'}
     - name: Install and test
-      run: |
-        python --version
-        pip install -U ghapi
-        ghapi
-        #bash .github/scripts/build.sh
+      run: bash .github/scripts/build.sh
