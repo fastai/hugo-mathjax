@@ -14,6 +14,10 @@ jobs:
         echo "action_state=yellow" >> $GITHUB_ENV
         echo "action_state=red" >> $GITHUB_ENV
         echo "foo=bar" >> $GITHUB_ENV
+    - id: step2
+      env:
+        fruit: ${{ steps.step1.outputs.action_fruit }}
+      run: echo $fruit
 
   build:
     needs: [test]
