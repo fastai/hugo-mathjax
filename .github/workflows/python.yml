@@ -29,7 +29,7 @@ jobs:
 #       with: {python-version: '3.8'}
     - name: Install and test
       env:
-       GITHUB_JOBS: ${{ toJson(jobs) }}
+       GITHUB_JOBS: ${{ toJson(needs) }}
 #        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         echo $GITHUB_JOBS
