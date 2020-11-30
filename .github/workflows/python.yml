@@ -6,7 +6,7 @@ defaults:
 
 jobs:
   test:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
     steps:
     - run: |
         echo "action_state=yellow" >> $GITHUB_ENV
