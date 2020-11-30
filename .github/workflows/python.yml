@@ -12,7 +12,9 @@ jobs:
     - id: step1
       env:
        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "::set-output name=action_fruit::strawberry"
+      run: |
+        pip install git+https://github.com/fastai/ghapi.git
+        bash .github/scripts/prebuild.sh
 
   build:
     needs: [prebuild]
@@ -29,5 +31,6 @@ jobs:
        GITHUB_NEEDS: ${{ toJson(needs) }}
        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
-        pip install -Uq ghapi
-        bash .github/scripts/build.sh
+        echo $GITHUB_NEEDS
+        # pip install -Uq ghapi
+        # bash .github/scripts/build.sh
