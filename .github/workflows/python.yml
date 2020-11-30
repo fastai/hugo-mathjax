@@ -9,26 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
+        echo "::set-output name=action_fruit::strawberry"
         echo "action_state=yellow" >> $GITHUB_ENV
         echo "action_state=red" >> $GITHUB_ENV
         echo "foo=bar" >> $GITHUB_ENV
 
   build:
     needs: [test]
-    strategy:
+#     strategy:
 #       fail-fast: false
-      matrix:
+#       matrix:
 #        os: [macos, ubuntu, windows]
-        os: [windows]
-    runs-on: ${{ matrix.os }}-latest
+#         os: [windows]
+#     runs-on: ${{ matrix.os }}-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v2
-      with: {python-version: '3.8'}
+#     - uses: actions/checkout@v1
+#     - uses: actions/setup-python@v2
+#       with: {python-version: '3.8'}
     - name: Install and test
       env:
-       GITHUB_CONTEXT: ${{ toJson(github) }}
+       GITHUB_JOBS: ${{ toJson(jobs) }}
+#        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
-        echo $action_state
-        echo $foo
-        bash .github/scripts/build.sh
+        echo $GITHUB_JOBS
+#         bash .github/scripts/build.sh
