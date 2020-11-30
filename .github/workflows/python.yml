@@ -14,7 +14,7 @@ jobs:
        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         pip install git+https://github.com/fastai/ghapi.git
-        bash .github/scripts/prebuild.sh
+        python .github/scripts/prebuild.py
 
   build:
     needs: [prebuild]
