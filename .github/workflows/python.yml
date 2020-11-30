@@ -9,28 +9,27 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       out: ${{ toJson(steps) }}
-#       action_fruit: ${{ steps.step1.outputs.action_fruit }}
     steps:
     - id: step1
+      env:
+       GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "::set-output name=action_fruit::strawberry"
 
   build:
     needs: [test]
-#     strategy:
-#       fail-fast: false
-#       matrix:
-#        os: [macos, ubuntu, windows]
-#         os: [windows]
-#     runs-on: ${{ matrix.os }}-latest
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+       os: [macos, ubuntu, windows]
+    runs-on: ${{ matrix.os }}-latest
     steps:
-#     - uses: actions/checkout@v1
-#     - uses: actions/setup-python@v2
-#       with: {python-version: '3.8'}
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v2
+      with: {python-version: '3.8'}
     - name: Install and test
       env:
-       GITHUB_JOBS: ${{ toJson(needs) }}
-#        GITHUB_CONTEXT: ${{ toJson(github) }}
+       GITHUB_NEEDS: ${{ toJson(needs) }}
+       GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
-        echo $GITHUB_JOBS
-#         bash .github/scripts/build.sh
+        pip install -Uq ghapi
+        bash .github/scripts/build.sh
