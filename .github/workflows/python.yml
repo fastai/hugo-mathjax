@@ -8,7 +8,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - run: |
+    - id: step1
+      run: |
         echo "::set-output name=action_fruit::strawberry"
         echo "action_state=yellow" >> $GITHUB_ENV
         echo "action_state=red" >> $GITHUB_ENV
