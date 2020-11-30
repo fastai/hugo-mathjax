@@ -25,8 +25,7 @@ jobs:
     needs: [prebuild]
     strategy:
       fail-fast: false
-#       matrix: { os: [macos, ubuntu, windows] }
-      matrix: { os: [ubuntu] }
+      matrix: { os: [macos, ubuntu, windows] }
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v1
@@ -38,6 +37,5 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_NEEDS: ${{ toJson(needs) }}
       run: |
-        echo $GITHUB_NEEDS
         pip install git+https://github.com/fastai/ghapi.git
         python .github/scripts/build.py
