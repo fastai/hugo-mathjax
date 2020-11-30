@@ -1,11 +1,10 @@
 name: Python
 on: [workflow_dispatch]
 defaults:
-  run:
-    shell: bash
+  run: { shell: bash }
 
 jobs:
-  test:
+  prebuild:
     runs-on: ubuntu-latest
     outputs:
       out: ${{ toJson(steps) }}
@@ -16,11 +15,10 @@ jobs:
       run: echo "::set-output name=action_fruit::strawberry"
 
   build:
-    needs: [test]
+    needs: [prebuild]
     strategy:
       fail-fast: false
-      matrix:
-       os: [macos, ubuntu, windows]
+      matrix: { os: [macos, ubuntu, windows] }
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v1
