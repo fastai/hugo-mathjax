@@ -11,6 +11,7 @@ def rel_tag():
     except HTTP404NotFoundError: pass
 
     rel = api.repos.create_release(tag, name=tag)
+    print(f'New release: {tag}')
     actions_output('tag', tag)
 
 rel_tag()
