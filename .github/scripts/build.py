@@ -21,7 +21,9 @@ github_needs = {'prebuild': {'outputs': {'out': '{\n'
 platform = dict(linux='linux', linux2='linux', win32='win', darwin='mac')[sys.platform]
 out = loads(nested_idx(github_needs, 'prebuild', 'outputs', 'out'))
 tag = nested_idx(out, 'step1', 'outputs', 'tag')
+if not tag: sys.exit()
 
+print(f'New release: {tag}')
 rel = GhApi().repos.get_release_by_tag(owner='gohugoio', repo='hugo', tag=tag)
 with urlopen(rel.tarball_url) as f: untar_dir(f, 'hugo')
 os.chdir('hugo')
