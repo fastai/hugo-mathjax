@@ -25,18 +25,21 @@ jobs:
     needs: [prebuild]
     strategy:
       fail-fast: false
-      matrix: { os: [macos, ubuntu, windows] }
+#       matrix: { os: [macos, ubuntu, windows] }
+      matrix: { os: [ubuntu] }
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v2
       with: {python-version: '3.8'}
     - name: Upload artifacts
+      if: needs.prebuild.outputs.out
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_NEEDS: ${{ toJson(needs) }}
       run: |
+        echo hello there
         echo $GITHUB_NEEDS
         # pip install -Uq ghapi
         # bash .github/scripts/build.sh
