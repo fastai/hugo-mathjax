@@ -5,8 +5,8 @@ from ghapi import *
 import tarfile
 
 def rel_tag():
-    api = GhApi(owner='fastai', repo='hugo-mathjax', token=github_token())
     tag = GhApi().repos.get_latest_release('gohugoio', repo='hugo').name
+    api = GhApi(owner='fastai', repo='hugo-mathjax', token=github_token())
     try: return api.repos.get_release_by_tag(tag)
     except HTTP404NotFoundError: pass
 
