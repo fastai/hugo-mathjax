@@ -15,8 +15,7 @@ jobs:
     - name: Create release
       id: step1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_CONTEXT: ${{ toJson(github) }}
+        CONTEXT_GITHUB: ${{ toJson(github) }}
       run: |
         pip install -q git+https://github.com/fastai/ghapi.git
         python .github/scripts/prebuild.py
@@ -33,9 +32,8 @@ jobs:
       with: {python-version: '3.8'}
     - name: Upload artifacts
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-        GITHUB_NEEDS: ${{ toJson(needs) }}
+        CONTEXT_GITHUB: ${{ toJson(github) }}
+        CONTEXT_NEEDS: ${{ toJson(needs) }}
       run: |
         pip install -q git+https://github.com/fastai/ghapi.git
         python .github/scripts/build.py

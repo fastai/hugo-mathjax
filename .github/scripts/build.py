@@ -6,7 +6,7 @@ import tarfile
 
 """
 # For testing
-github_needs = {'prebuild': {'outputs': {'out': '{\n'
+context_needs = {'prebuild': {'outputs': {'out': '{\n'
                                  '  "step1": {\n'
                                  '    "outputs": {\n'
                                  '      "tag": "v0.79.0"\n'
@@ -19,7 +19,7 @@ github_needs = {'prebuild': {'outputs': {'out': '{\n'
 """
 
 platform = dict(linux='linux', linux2='linux', win32='win', darwin='mac')[sys.platform]
-out = loads(nested_idx(github_needs, 'prebuild', 'outputs', 'out'))
+out = loads(nested_idx(context_needs, 'prebuild', 'outputs', 'out'))
 tag = nested_idx(out, 'step1', 'outputs', 'tag')
 if not tag: sys.exit()
 
@@ -32,6 +32,6 @@ ext_nm = 'hugo.exe' if platform=='win' else 'hugo'
 fn = f'hugo-{platform}.tgz'
 with tarfile.open(fn, "w:gz") as tar: tar.add(ext_nm)
 
-api = GhApi(owner='fastai', repo='hugo-mathjax', token=os.environ['GITHUB_TOKEN'])
+api = GhApi(owner='fastai', repo='hugo-mathjax', token=github_token())
 rel = api.repos.get_release_by_tag(tag)
 api.upload_file(rel, fn)
