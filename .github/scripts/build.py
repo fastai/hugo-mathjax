@@ -27,7 +27,7 @@ rel = GhApi().repos.get_release_by_tag(owner='gohugoio', repo='hugo', tag=tag)
 with urlopen(rel.tarball_url) as f: untar_dir(f, 'hugo')
 os.chdir('hugo')
 run(f'patch -l -p1 -i ../hugo.patch')
-run('go build --tags extended')
+run('go build') # --tags extended')
 ext_nm = 'hugo.exe' if platform=='win' else 'hugo'
 fn = f'hugo-{platform}.tgz'
 with tarfile.open(fn, "w:gz") as tar: tar.add(ext_nm)
