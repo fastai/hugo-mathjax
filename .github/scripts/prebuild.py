@@ -2,7 +2,6 @@
 
 from fastcore.utils import *
 from ghapi import *
-import tarfile
 
 def rel_tag():
     tag = GhApi().repos.get_latest_release('gohugoio', repo='hugo').name
