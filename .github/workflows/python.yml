@@ -1,7 +1,8 @@
 name: Create release
 on:
   workflow_dispatch:
-  schedule: [ cron: '11 02 * * *' ]
+  schedule: 
+    - cron: '11 02 * * *'
 defaults:
   run: { shell: bash }
 
