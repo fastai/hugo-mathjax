@@ -1,5 +1,7 @@
-name: Python
-on: [workflow_dispatch]
+name: Create release
+on:
+  workflow_dispatch:
+  schedule: [ cron: '11 02 * * *' ]
 defaults:
   run: { shell: bash }
 
