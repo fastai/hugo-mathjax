@@ -4,20 +4,6 @@ from fastcore.utils import *
 from ghapi import *
 import tarfile
 
-"""
-# For testing
-context_needs = {'prebuild': {'outputs': {'out': '{\n'
-                                 '  "step1": {\n'
-                                 '    "outputs": {\n'
-                                 '      "tag": "v0.79.0"\n'
-                                 '    },\n'
-                                 '    "outcome": "success",\n'
-                                 '    "conclusion": "success"\n'
-                                 '  }\n'
-                                 '}'},
-              'result': 'success'}}
-"""
-
 platform = dict(linux='linux', linux2='linux', win32='win', darwin='mac')[sys.platform]
 out = loads(nested_idx(context_needs, 'prebuild', 'outputs', 'out'))
 tag = nested_idx(out, 'step1', 'outputs', 'tag')
