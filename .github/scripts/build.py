@@ -4,7 +4,6 @@ from fastcore.utils import *
 from ghapi import *
 import tarfile
 
-platform = dict(linux='linux', linux2='linux', win32='win', darwin='mac')[sys.platform]
 out = loads(nested_idx(context_needs, 'prebuild', 'outputs', 'out'))
 tag = nested_idx(out, 'step1', 'outputs', 'tag')
 if not tag: sys.exit()
@@ -14,6 +13,8 @@ with urlopen(rel.tarball_url) as f: untar_dir(f, 'hugo')
 os.chdir('hugo')
 run(f'patch -l -p1 -i ../hugo.patch')
 run('go build --tags extended')
+
+platform = dict(linux='linux', linux2='linux', win32='win', darwin='mac')[sys.platform]
 ext_nm = 'hugo.exe' if platform=='win' else 'hugo'
 fn = f'hugo-{platform}.tgz'
 with tarfile.open(fn, "w:gz") as tar: tar.add(ext_nm)
