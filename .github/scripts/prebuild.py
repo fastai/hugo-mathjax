@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from fastcore.utils import *
-from ghapi import *
+from ghapi.all import *
 
 def rel_tag():
     tag = GhApi().repos.get_latest_release('gohugoio', repo='hugo').name
