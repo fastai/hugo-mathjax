@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from fastcore.utils import *
-from ghapi import *
+from ghapi.all import *
 import tarfile
 
 out = loads(nested_idx(context_needs, 'prebuild', 'outputs', 'out'))
